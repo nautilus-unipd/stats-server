@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+venv/
+ENV/
+
+# Flask
+instance/
+.webassets-cache
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Local configuration
+.env
+.flaskenv
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+*.log
+logs/
+
+# Temp files
+tmp/
+temp/

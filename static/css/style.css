@@ -1,0 +1,8 @@
+
+:not(h2), *{
+font-size: large;
+}
+
+th{
+    text-align: left;
+}

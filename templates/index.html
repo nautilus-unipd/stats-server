@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stat Server</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <h2> Select the folder: {{ current_path or '/' }}</h2>
+
+    {% if current_path %}
+    <div>
+        <a href="/?path={{ '/'.join(current_path.split('/')[:-1]) or '/' }}">go up
+            {{ '/'.join(current_path.split('/')[:-1]) or '/' }}</a>
+    </div>
+    {% endif %}
+
+    <table>
+
+        <tr>
+            <th colspan="2" width="50%">Name</th>
+            <th colspan="1" width="10%">Size</th>
+            <th colspan="1" width="40%">Last Modified</th>
+        </tr>
+        {% for file in files %}
+        {% if file.name[0] != '.' %}
+
+        <tr>
+            {% if file.is_file() %}
+            <td>
+                📄
+            </td>
+            {% else %}
+            <td>📁</td>
+            {% endif %}
+            <td>
+                <a href="/?path={{ (current_path + '/'  if current_path != '/' else '/') + file.name }}">
+                    {{ file.name }}
+                </a>
+            </td>
+            {% if file.is_file() %}
+            <td>
+                {{ file.stat().st_size }} bytes
+            </td>
+
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td>
+                {{ file.stat().st_atime | datetime_filter}}
+            </td>
+
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    <table>
+        <tr>
+            <th>
+                <form method="post" action="/images/?path={{ current_path or '/' }}">
+                    <input type="submit" value="Open as image folder">
+                </form>
+            </th>
+            <th>
+                <form method="post" action="/logs/?path={{ current_path or '/' }}">
+                    <input type="submit" value="Open as log folder">
+                </form>
+            </th>
+        </tr>
+        </div>
+</body>
+
+</html>

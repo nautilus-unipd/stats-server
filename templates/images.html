@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stat Server</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    {% if images %}
+    {% for image in images %}
+    <img src="{{ url_for('serve_image', filepath=image) }}" alt="image" width="500">
+    {% endfor %}
+    {% else %}
+    <p>No images found in this directory.</p>
+    {% endif %}
+</body>
+
+</html>
