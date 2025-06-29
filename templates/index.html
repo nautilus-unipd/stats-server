@@ -9,11 +9,26 @@
 </head>
 
 <body>
-    <h2> Select the folder: {{ current_path or '/' }}</h2>
+    <h1> Current folder: {{ current_path or '/' }}</h1>
+    <table>
+        <tr>
+            <th>
+                <form method="post" action="/images/?path={{ current_path or '/' }}">
+                    <input type="submit" value="Open as image folder">
+                </form>
+            </th>
+            </th>
+            <th>
+                <form method="post" action="/logs/?path={{ current_path or '/' }}">
+                    <input type="submit" value="Open as log folder">
+                </form>
+            </th>
+        </tr>
+    </table>
 
     {% if current_path %}
     <div>
-        <a href="/?path={{ '/'.join(current_path.split('/')[:-1]) or '/' }}">go up
+        <a href="/?path={{ '/'.join(current_path.split('/')[:-1]) or '/' }}">📂 go up
             {{ '/'.join(current_path.split('/')[:-1]) or '/' }}</a>
     </div>
     {% endif %}
@@ -57,20 +72,6 @@
         {% endif %}
         {% endfor %}
     </table>
-    <table>
-        <tr>
-            <th>
-                <form method="post" action="/images/?path={{ current_path or '/' }}">
-                    <input type="submit" value="Open as image folder">
-                </form>
-            </th>
-            <th>
-                <form method="post" action="/logs/?path={{ current_path or '/' }}">
-                    <input type="submit" value="Open as log folder">
-                </form>
-            </th>
-        </tr>
-        </div>
 </body>
 
 </html>

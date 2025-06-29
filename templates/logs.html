@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs in {{ path }}</title>
+</head>
+
+<body>
+    <h1>Log Files in {{ path }}</h1>
+    <div class="download-all">
+        Download all logs as zip:
+        <a href="{{ url_for('download_all_logs', path=path) }}" class="download-btn">Download All</a>
+    </div>
+
+    <ul>
+        {% for log in logs %}
+        <li>
+            <a href="{{ url_for('serve_logs', path=log) }}">{{ log.split('/')[-1] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
