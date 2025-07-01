@@ -6,107 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Images in {{ path }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <style>
-        body {
-            font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
-            /* Remove margin to allow content to fill the page width */
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            /* Increase gap for better spacing between images */
-            gap: 15px;
-            /* Add padding so images don't touch the screen edges */
-            padding: 15px;
-            justify-content: center;
-        }
-
-        .image-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            text-align: center;
-            /* Use flexbox to make cards grow and shrink, with a larger base size */
-            flex: 1 1 450px;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .image-card img {
-            /* Image will take full width of the card */
-            width: 100%;
-            /* Height will adjust to maintain aspect ratio */
-            height: auto;
-            object-fit: contain;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .card-footer {
-            margin-top: auto;
-            /* Pushes this content to the bottom of the card */
-        }
-
-        .image-card p {
-            margin: 0;
-            font-size: 0.9em;
-            color: #333;
-            word-wrap: break-word;
-        }
-
-        .download-all {
-            text-align: left;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-            /* Add horizontal padding since body margin is removed */
-            padding: 0 2em;
-        }
-
-        .download-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
-        }
-
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 30px;
-            /* Add padding since body margin is removed */
-            padding-top: 20px;
-        }
-
-        .back-link {
-            display: block;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            /* Add padding since body margin is removed */
-            padding: 1em 2em 0;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/images.css') }}">
 </head>
 
 <body>
@@ -118,7 +18,21 @@
         Download all images as zip:
         <a href="{{ url_for('images.download_all_images', path=path) }}" class="download-btn">Download All</a>
     </div>
+
     {% if images %}
+    <table class="navigation-arrows">
+        {% if page > 1 %}
+        <td class="arrow">
+            <a href="{{ url_for('images.images', path=path, page=page-1) }}" class="arrow">&lt; Back</a>
+        </td>
+        {% endif %}
+        <td>Page {{ page }} of {{ total_pages }}</td>
+        {% if page < total_pages %}
+        <td class="arrow">
+            <a href="{{ url_for('images.images', path=path, page=page+1) }}" class="arrow">Forward &gt;</a>
+        </td>
+        {% endif %}
+    </table>
     <div class="gallery-container">
         {% for image_path in images %}
         <div class="image-card">
@@ -130,7 +44,21 @@
             </div>
         </div>
         {% endfor %}
+
     </div>
+    <table class="navigation-arrows">
+        {% if page > 1 %}
+        <td class="arrow">
+            <a href="{{ url_for('images.images', path=path, page=page-1) }}" class="arrow">&lt; Back</a>
+        </td>
+        {% endif %}
+        <td>Page {{ page }} of {{ total_pages }}</td>
+        {% if page < total_pages %}
+        <td class="arrow">
+            <a href="{{ url_for('images.images', path=path, page=page+1) }}" class="arrow">Forward &gt;</a>
+        </td>
+        {% endif %}
+    </table>
     {% else %}
     <p style="text-align:center;">No images found in this directory.</p>
     {% endif %}

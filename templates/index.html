@@ -5,66 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stat Server</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 
 <body>
-    <h1> Current folder: {{ current_path or '/' }}</h1>
-    <table>
+    <div class="page-header">
+        <h1>Current folder: {{ current_path or '/' }}</h1>
+    </div>
+    <table class="action-buttons">
         <tr>
             <th>
                 <form method="post" action="{{ url_for('images.images', path=current_path or '/') }}">
-                    <input type="submit" value="Open as image folder">
+                    <input type="submit" value="Open as image folder" class="action-btn">
                 </form>
-            </th>
             </th>
             <th>
                 <form method="post" action="{{ url_for('logs.logs', path=current_path or '/') }}">
-                    <input type="submit" value="Open as log folder">
+                    <input type="submit" value="Open as log folder" class="action-btn">
                 </form>
             </th>
         </tr>
     </table>
 
     {% if current_path %}
-    <div>
-        <a href="/?path={{ '/'.join(current_path.split('/')[:-1]) or '/' }}">📂 go up
+    <div class="navigation">
+        <a href="/?path={{ '/'.join(current_path.split('/')[:-1]) or '/' }}" class="nav-link">📂 go up
             {{ '/'.join(current_path.split('/')[:-1]) or '/' }}</a>
     </div>
     {% endif %}
 
-    <table>
+    <table class="file-table">
 
-        <tr>
-            <th colspan="2" width="50%">Name</th>
+        <tr class="table-header">
+            <th colspan="1" width="50%">Name</th>
             <th colspan="1" width="10%">Size</th>
             <th colspan="1" width="40%">Last Modified</th>
         </tr>
         {% for file in files %}
         {% if file.name[0] != '.' %}
 
-        <tr>
+        <tr class="file-row">
             {% if file.is_file() %}
-            <td>
-                📄
-            </td>
+            <td class="file-name">📄
             {% else %}
-            <td>📁</td>
+            <td class="file-name">📁
             {% endif %}
-            <td>
-                <a href="/?path={{ (current_path + '/'  if current_path != '/' else '/') + file.name }}">
+                <a href="/?path={{ (current_path + '/'  if current_path != '/' else '/') + file.name }}"
+                    class="file-link">
                     {{ file.name }}
                 </a>
             </td>
             {% if file.is_file() %}
-            <td>
+            <td class="file-size">
                 {{ file.stat().st_size }} bytes
             </td>
 
             {% else %}
-            <td></td>
+            <td class="file-size"></td>
             {% endif %}
-            <td>
+            <td class="file-date">
                 {{ file.stat().st_atime | datetime_filter}}
             </td>
 

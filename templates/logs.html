@@ -5,22 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logs in {{ path }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logs.css') }}">
 </head>
 
 <body>
-    <h1>Log Files in {{ path }}</h1>
+    <a href="/?path={{ path }}" class="back-link">← Back to File List</a>
+    <div class="page-header">
+        <h1>Log Files in: {{ path or 'root' }}</h1>
+    </div>
     <div class="download-all">
         Download all logs as zip:
         <a href="{{ url_for('logs.download_all_logs', path=path) }}" class="download-btn">Download All</a>
     </div>
 
-    <ul>
-        {% for log in logs %}
-        <li>
-            <a href="{{ url_for('logs.serve_logs', path=log) }}">{{ log.split('/')[-1] }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+    {% if logs %}
+    <div class="log-list">
+        <ul>
+            {% for log in logs %}
+            <li>
+                <a href="{{ url_for('logs.serve_logs', path=log) }}">{{ log.split('/')[-1] }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <p class="no-logs">No log files found in this directory.</p>
+    {% endif %}
 </body>
 
 </html>

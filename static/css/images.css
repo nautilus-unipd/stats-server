@@ -1,0 +1,104 @@
+/* Images page specific styles */
+
+/* Gallery layout */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Increase gap for better spacing between images */
+    gap: 15px;
+    /* Add padding so images don't touch the screen edges */
+    padding: 15px;
+    justify-content: center;
+}
+
+.image-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    /* Use flexbox to make cards grow and shrink, with a larger base size */
+    flex: 1 1 450px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-card:hover {
+    transform: translateY(-5px);
+}
+
+.image-card img {
+    /* Image will take full width of the card */
+    width: 100%;
+    /* Height will adjust to maintain aspect ratio */
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    margin-top: auto;
+    /* Pushes this content to the bottom of the card */
+}
+
+.image-card p {
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+    word-wrap: break-word;
+}
+
+/* Navigation arrows styling */
+.navigation-arrows {
+    margin: 20px auto;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.navigation-arrows td {
+    padding: 10px 15px;
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.navigation-arrows td.arrow {
+    min-width: 80px;
+}
+
+.navigation-arrows a.arrow {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.navigation-arrows a.arrow:hover {
+    background-color: #0056b3;
+}
+
+.navigation-arrows td:not(.arrow) {
+    font-weight: bold;
+    color: #000;
+    font-size: 16px;
+}
+
+/* Style for "No images found" message */
+p[style*="text-align:center"] {
+    font-size: 18px;
+    color: #000;
+    margin: 40px 0;
+    font-weight: bold;
+}

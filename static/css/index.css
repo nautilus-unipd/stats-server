@@ -1,0 +1,74 @@
+/* Index page specific styles */
+
+/* Navigation section - aligned to left side of table */
+.navigation {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+/* File table */
+.file-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-header th {
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+    color: #000;
+    font-size: 16px;
+}
+
+.file-row {
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s;
+}
+
+.file-row:hover {
+    background-color: #f8f9fa;
+}
+
+.file-name {
+    padding: 10px 20px 10px 5px;
+    text-align: left;
+    width: 30px;
+    font-size: 1.2em;
+}
+
+.file-link {
+    color: #003cff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+    color: #8300a8;
+}
+
+.file-size {
+    padding: 10px;
+    text-align: right;
+    color: #000;
+    font-size: 14px;
+}
+
+.file-date {
+    padding: 10px;
+    color: #000;
+    font-size: 14px;
+}

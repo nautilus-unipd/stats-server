@@ -1,0 +1,63 @@
+/* Logs page specific styles */
+
+/* Log list styling */
+.log-list {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.log-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.log-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s;
+}
+
+.log-list li:last-child {
+    border-bottom: none;
+}
+
+.log-list li:hover {
+    background-color: #f8f9fa;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.log-list a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.log-list a:before {
+    content: "📄";
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.log-list a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Empty state message */
+.no-logs {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    margin: 40px 0;
+    font-weight: bold;
+}

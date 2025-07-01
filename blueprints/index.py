@@ -4,10 +4,10 @@ from datetime import datetime
 import os
 from flask import Blueprint, abort, render_template, send_file, request
 
-main_bp = Blueprint('main', __name__)
+index_bp = Blueprint('index', __name__)
 
 
-@main_bp.route('/')
+@index_bp.route('/', methods=['GET'])
 def index():
     """Main directory browser route."""
     BASE_DIR = os.path.expanduser("~")
@@ -33,7 +33,7 @@ def index():
         return abort(500)
 
 
-@main_bp.app_template_filter()
+@index_bp.app_template_filter()
 def datetime_filter(value):
     """Template filter to format datetime from timestamp."""
     return datetime.fromtimestamp(value).strftime('%Y-%m-%d %H:%M:%S')

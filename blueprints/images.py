@@ -14,6 +14,10 @@ images_bp = Blueprint('images', __name__, url_prefix='/images')
 def images():
     """Display images in a directory."""
     path = request.args.get('path')
+    page = request.args.get('page', 1, type=int)
+    
+    img_per_page = 18  
+    
     if not path or not os.path.exists(path):
         return abort(404)
     
@@ -21,8 +25,14 @@ def images():
     for entry in os.scandir(path):
         if entry.is_file() and any(entry.name.lower().endswith(ext) for ext in IMAGE_EXTENSIONS):
             images.append(entry.path)  # Use full path
+            
+    start = (page - 1) * img_per_page
+    end = start + img_per_page
+
+    total_pages = (len(images) + img_per_page - 1) // img_per_page  
+    
     try:
-        return render_template('images.html', path=path, images=images)
+        return render_template('images.html', path=path, images=images[start:end], page=page, total_pages=total_pages)
     except Exception as e:
         print(f"Error processing images: {e}")
         return abort(500)
