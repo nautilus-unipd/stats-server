@@ -116,16 +116,17 @@
     </div>
     <div class="download-all">
         Download all images as zip:
-        <a href="{{ url_for('download_all_images', path=path) }}" class="download-btn">Download All</a>
+        <a href="{{ url_for('images.download_all_images', path=path) }}" class="download-btn">Download All</a>
     </div>
     {% if images %}
     <div class="gallery-container">
         {% for image_path in images %}
         <div class="image-card">
-            <img src="{{ url_for('serve_image', filepath=image_path) }}" alt="Image: {{ image_path.split('/')[-1] }}">
+            <img src="{{ url_for('images.serve_image', filepath=image_path) }}"
+                alt="Image: {{ image_path.split('/')[-1] }}">
             <div class="card-footer">
                 <p>{{ image_path.split('/')[-1] }}</p>
-                <a href="{{ url_for('download_image', filepath=image_path) }}" class="download-btn">Download</a>
+                <a href="{{ url_for('images.download_image', filepath=image_path) }}" class="download-btn">Download</a>
             </div>
         </div>
         {% endfor %}

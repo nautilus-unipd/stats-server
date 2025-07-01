@@ -13,13 +13,13 @@
     <table>
         <tr>
             <th>
-                <form method="post" action="/images/?path={{ current_path or '/' }}">
+                <form method="post" action="{{ url_for('images.images', path=current_path or '/') }}">
                     <input type="submit" value="Open as image folder">
                 </form>
             </th>
             </th>
             <th>
-                <form method="post" action="/logs/?path={{ current_path or '/' }}">
+                <form method="post" action="{{ url_for('logs.logs', path=current_path or '/') }}">
                     <input type="submit" value="Open as log folder">
                 </form>
             </th>

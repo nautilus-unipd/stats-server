@@ -11,13 +11,13 @@
     <h1>Log Files in {{ path }}</h1>
     <div class="download-all">
         Download all logs as zip:
-        <a href="{{ url_for('download_all_logs', path=path) }}" class="download-btn">Download All</a>
+        <a href="{{ url_for('logs.download_all_logs', path=path) }}" class="download-btn">Download All</a>
     </div>
 
     <ul>
         {% for log in logs %}
         <li>
-            <a href="{{ url_for('serve_logs', path=log) }}">{{ log.split('/')[-1] }}</a>
+            <a href="{{ url_for('logs.serve_logs', path=log) }}">{{ log.split('/')[-1] }}</a>
         </li>
         {% endfor %}
     </ul>
