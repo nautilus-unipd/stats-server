@@ -25,6 +25,11 @@
                     <input type="submit" value="Open as log folder" class="action-btn">
                 </form>
             </th>
+            <th>
+                <form method="post" action="{{ url_for('sensors.sensors') }}">
+                    <input type="submit" value="Open temperature monitor" class="action-btn" id="sensors-btn">
+                </form>
+            </th>
         </tr>
     </table>
 

@@ -91,6 +91,13 @@ body {
     border-collapse: collapse;
 }
 
+#sensors-btn{
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+}
+
+
 .action-buttons th {
     padding: 10px;
     text-align: center;

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sensors.css') }}">
+</head>
+
+<body>
+    <a href="/" class="back-link">← Back to File List</a>
+    <div class="page-header">
+        <h1>CPU Temperature Monitor</h1>
+    </div>
+
+    <div class="sensor-info">
+        <div class="temp-display">
+            <h2>Current CPU Temperature</h2>
+            <p class="temperature">{{ cpu_temp }}°C</p>
+            <button onclick="location.reload()" class="action-btn update-btn">🔄 Update Temperature</button>
+        </div>
+
+        <div class="download-all">
+            Download log file:
+            <a href="{{ url_for('static', filename='logs/cpu_temp.log') }}" class="download-btn">Download
+                cpu_temp.log</a>
+        </div>
+    </div>
+
+    <div class="log-section">
+        <h2>Temperature Log</h2>
+        <div class="log-content">
+            <pre>{{ log_content }}</pre>
+        </div>
+    </div>
+</body>
+
+</html>
